@@ -21,7 +21,8 @@ Designed to be impactful for both **financial** and **non-financial** industries
 - **Cloud**: AWS EC2, AWS RDS (PostgreSQL), S3  
 - **Version Control**: Git, GitHub  
 - **Database**: PostgreSQL  
-- **Deployment**: Docker + Kubernetes on AWS
+- **Deployment**: Docker + Kubernetes on AWS  
+- **BI Tools (Planned)**: Tableau, Power BI for interactive data visualization and business intelligence
 
 ---
 
@@ -33,6 +34,7 @@ Designed to be impactful for both **financial** and **non-financial** industries
 - ✅ **Scalable Microservices**: Containerized deployment on AWS with high availability.
 - ✅ **MLOps Ready**: End-to-end CI/CD pipelines using GitHub Actions.
 - ✅ **Database Integration**: PostgreSQL used for persisting chatbot interactions, document metadata, and financial market data.
+- ⏳ **BI Integration (Future Work)**: Planning to integrate Tableau and Power BI dashboards to enable rich, interactive visual analytics for AI-generated insights and financial data.
 
 ---
 
@@ -115,16 +117,22 @@ Enterprise-AI-NLP-Solution/
 Mohammed M. Khan
 GitHub: MoMKhan1
 Email: zaman.khan123rd@gmail.com
+
 📄 License
 
 MIT License. Feel free to use and modify with attribution.
 
+Would you like me to generate:
+
+    ✅ postgres_loader.py script for loading finance_data.csv?
+
+    ✅ Matching Dockerfile and docker-compose.yml to run locally?
+
+Let me know!
+
 
 ---
 
-Would you like me to generate:
+If you want, I can help you with the actual Tableau integration or show examples of embedding Tableau dashboards in your project!
 
-- ✅ `postgres_loader.py` script for loading `finance_data.csv`?
-- ✅ Matching `Dockerfile` and `docker-compose.yml` to run locally?
-
-Let me know!
+Want me to do that?
