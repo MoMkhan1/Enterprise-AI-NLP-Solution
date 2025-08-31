@@ -56,5 +56,6 @@ jobs:
       - name: Run docker-compose
         run: |
           docker-compose up -d
-          sleep 30
+          echo "Waiting for PostgreSQL and Kafka to be healthy..."
+          sleep 60
           docker ps
