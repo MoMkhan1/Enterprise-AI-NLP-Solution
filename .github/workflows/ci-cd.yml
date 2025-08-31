@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile
+          file: ./docker/kafka-producer/Dockerfile   # ✅ correct path
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/kafka-producer:latest
 
@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile
+          file: ./docker/kafka-consumer/Dockerfile   # ✅ correct path
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/kafka-consumer:latest
 
@@ -44,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile
+          file: ./docker/nlp-app/Dockerfile           # ✅ correct path
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/nlp-app:latest
 
