@@ -1,3 +1,4 @@
+# .github/workflows/ci-cd.yml
 name: CI/CD Pipeline
 
 on:
@@ -28,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/kafka-producer/Dockerfile   # ✅ correct path
+          file: ./docker/kafka-producer/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/kafka-producer:latest
 
@@ -36,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/kafka-consumer/Dockerfile   # ✅ correct path
+          file: ./docker/kafka-consumer/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/kafka-consumer:latest
 
@@ -44,7 +45,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/nlp-app/Dockerfile           # ✅ correct path
+          file: ./docker/nlp-app/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/nlp-app:latest
 
