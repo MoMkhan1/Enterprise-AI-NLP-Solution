@@ -1,0 +1,13 @@
+1. SELECT "Date", "Close" FROM stock_data ORDER BY "Date" LIMIT 10;
+SELECT * FROM stock_data ORDER BY "Close" DESC LIMIT 5; -- top 5 highest close
+SELECT * FROM stock_data ORDER BY "Close" ASC LIMIT 5;  -- top 5 lowest close
+
+2. 5 day moving avg: SELECT "Date", "Close", ROUND(AVG("Close") OVER (ORDER BY "Date" ROWS BETWEEN 4 PRECEDING AND CURRENT ROW)::numeric,2) AS moving_avg_5 FROM stock_data ORDER BY "Date" LIMIT 10;
+3.5, 10, and 20-Day Moving Averages :SELECT "Date", "Close", ROUND(AVG("Close") OVER (ORDER BY "Date" ROWS BETWEEN 4 PRECEDING AND CURRENT ROW)::numeric,2) AS moving_avg_5, ROUND(AVG("Close") OVER (ORDER BY "Date" ROWS BETWEEN 9 PRECEDING AND CURRENT ROW)::numeric,2) AS moving_avg_10, ROUND(AVG("Close") OVER (ORDER BY "Date" ROWS BETWEEN 19 PRECEDING AND CURRENT ROW)::numeric,2) AS moving_avg_20 FROM stock_data ORDER BY "Date" LIMIT 20;
+4. Filter by Date:SELECT "Date", "Close", moving_avg_5, moving_avg_10, moving_avg_20 FROM stock_data WHERE "Date" >= '2025-01-10' ORDER BY "Date";
+5. Highest and Lowest Close:SELECT * FROM stock_data ORDER BY "Close" DESC LIMIT 5;
+SELECT * FROM stock_data ORDER BY "Close" ASC LIMIT 5;
+
+6.Difference Between Close and Moving Average:SELECT "Date", "Close", moving_avg_5, ROUND("Close"-moving_avg_5,2) AS diff_from_ma5 FROM stock_data ORDER BY "Date" LIMIT 10;
+
+

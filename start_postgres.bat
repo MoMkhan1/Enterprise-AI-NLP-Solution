@@ -1,0 +1,1 @@
+@echo offecho setlocalecho net start postgresql-x64-15 >nul 2>&1echo rem set PGPASSWORD=adminecho psql -h localhost -U postgres -d finance_dbecho rem "C:\Program Files\PostgreSQL\15\bin\psql.exe" -h localhost -U postgres -d finance_dbecho endlocal

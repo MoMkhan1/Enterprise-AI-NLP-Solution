@@ -1,138 +1,235 @@
-# 🚀 Enterprise AI + NLP Solution  
-**Integrated AI and NLP Solution Leveraging Large Language Models for Data-Driven Decision Making and Customer Engagement**  
-GitHub: [MoMKhan1/Enterprise-AI-NLP-Solution](https://github.com/MoMKhan1/Enterprise-AI-NLP-Solution)
+# Enterprise AI NLP Solution
+
+## 📌 Overview
+
+This project implements an **Enterprise AI NLP Solution** for financial data analytics with both **batch and real-time capabilities**.  
+
+It features a complete data pipeline that:  
+- Ingests data from **PostgreSQL**, **live data sources**, and **Kafka streaming**  
+- Processes data with **Apache Spark**  
+- Orchestrates workflows using **Airflow**  
+- Applies **NLP and ML models**  
+- Stores results in **Snowflake**  
+- Visualizes insights in **Tableau BI dashboards**
 
 ---
 
-## 🧠 Overview
+## 🔄 Pipeline Flow
 
-This project presents a scalable AI platform integrating Machine Learning (ML), Natural Language Processing (NLP), and Large Language Models (LLMs) to extract insights from structured and unstructured financial data, automate customer interactions, and support enterprise-level decision-making.
+**Batch Processing:**  
 
-Designed to be impactful for both **financial** and **non-financial** industries, this end-to-end solution supports chatbot deployment, document classification, sentiment analysis, and real-time data processing through cloud-native MLOps pipelines.
+PostgreSQL → Spark ETL → Airflow DAGs → NLP Models → ML Predictions → Tableau Dashboards
 
----
 
-## 🛠️ Technologies
+**Real-Time Streaming:**  
 
-- **Languages**: Python, SQL  
-- **ML & NLP**: TensorFlow, Scikit-learn, Hugging Face Transformers (BERT, GPT)  
-- **Big Data**: Apache Spark  
-- **MLOps**: Docker, Kubernetes, GitHub Actions (CI/CD)  
-- **Cloud**: AWS EC2, AWS RDS (PostgreSQL), S3  
-- **Version Control**: Git, GitHub  
-- **Database**: PostgreSQL  
-- **Deployment**: Docker + Kubernetes on AWS  
-- **BI Tools (Planned)**: Tableau, Power BI for interactive data visualization and business intelligence
+Live Data APIs → Kafka Topics → Spark Structured Streaming → Snowflake → NLP Models → ML Predictions → Alerts → Tableau Dashboards
+
 
 ---
 
-## 🔍 Key Features
-
-- ✅ **Financial & Document NLP**: Extract insights from customer documents using LLMs (BERT, GPT).
-- ✅ **Chatbot**: Intelligent, LLM-powered chatbot for customer queries and automation.
-- ✅ **Predictive Modeling**: ML pipelines for forecasting, risk scoring, and document classification.
-- ✅ **Scalable Microservices**: Containerized deployment on AWS with high availability.
-- ✅ **MLOps Ready**: End-to-end CI/CD pipelines using GitHub Actions.
-- ✅ **Database Integration**: PostgreSQL used for persisting chatbot interactions, document metadata, and financial market data.
-- ⏳ **BI Integration (Future Work)**: Planning to integrate Tableau and Power BI dashboards to enable rich, interactive visual analytics for AI-generated insights and financial data.
-
----
-
-## 🗃️ PostgreSQL Integration
-
-This project integrates a PostgreSQL database to store and query financial time-series data and NLP outputs, enabling traceability and retraining.
-
-### 📁 Loaded Data
-
-- `data/finance_data.csv`: Historical stock price data downloaded from Yahoo Finance.
-
-### 🛠️ Database Configuration
-
-| Property   | Value       |
-|------------|-------------|
-| Host       | localhost   |
-| Port       | 5432        |
-| User       | postgres    |
-| Password   | Admin       |
-| Database   | enterprise_ai |
-
-### 📂 finance_data Table Schema
-
-| Column     | Type    |
-|------------|---------|
-| Date       | DATE    |
-| Open       | FLOAT   |
-| High       | FLOAT   |
-| Low        | FLOAT   |
-| Close      | FLOAT   |
-| Adj_Close  | FLOAT   |
-| Volume     | BIGINT  |
-
-### 📥 Load CSV into PostgreSQL
-
-Install required libraries:
-
-```bash
-pip install psycopg2 pandas
-
-Run data loader script:
-
-python src/database/postgres_loader.py
-
-🧱 Project Structure
+## 📂 Project Structure
 
 Enterprise-AI-NLP-Solution/
-│
+├── airflow/
+│ ├── dags/
+│ │ ├── finance_etl_dag.py # Batch ETL pipeline
+│ │ ├── load_stock_data_dag.py # PostgreSQL ingestion
+│ │ └── streaming_dag.py # Real-time streaming
+│ ├── logs/
+│ └── plugins/
 ├── data/
-│   └── finance_data.csv                  # Yahoo Finance dataset
-│
+│ └── finance_data.csv # Raw batch data
 ├── src/
-│   ├── nlp/
-│   │   ├── sentiment_analysis.py        # Sentiment model
-│   │   ├── document_classifier.py       # Financial doc classifier
-│   │   └── chatbot_llm.py               # LLM-based chatbot
-│   │
-│   ├── ml/
-│   │   └── prediction_pipeline.py       # ML pipeline using Spark/TensorFlow
-│   │
-│   └── database/
-│       └── postgres_loader.py           # Script to load CSV into PostgreSQL
-│
+│ ├── nlp/
+│ │ ├── sentiment_analysis.py
+│ │ ├── document_classifier.py
+│ │ └── chatbot_llm.py
+│ ├── ml/
+│ │ └── prediction_pipeline.py
+│ ├── database/
+│ │ └── postgres_loader.py
+│ ├── spark/
+│ │ ├── spark_etl.py
+│ │ └── spark_streaming.py
+│ ├── streaming/
+│ │ ├── kafka_producer.py
+│ │ └── kafka_consumer.py
+│ └── snowflake/
+│ └── snowflake_loader.py
+├── tableau/
+│ └── finance_dashboards.twbx
+├── tests/
+│ ├── test_database.py
+│ ├── test_spark_etl.py
+│ ├── test_nlp_models.py
+│ └── test_prediction_pipeline.py
 ├── Dockerfile
-├── .github/workflows/
-│   └── ci-cd.yml                        # GitHub Actions pipeline
+├── docker-compose.yml
 ├── requirements.txt
-└── README.md
-
-🚀 Deployment
-
-    Deploy via Docker Compose or Kubernetes
-
-    Hosted on AWS EC2 using containers
-
-    PostgreSQL hosted on AWS RDS
-
-👤 Author
-
-Mohammed M. Khan
-GitHub: MoMKhan1
-Email: zaman.khan123rd@gmail.com
-
-📄 License
-
-MIT License. Feel free to use and modify with attribution.
-
-Would you like me to generate:
-
-    ✅ postgres_loader.py script for loading finance_data.csv?
-
-    ✅ Matching Dockerfile and docker-compose.yml to run locally?
-
-Let me know!
+└── .github/
+└── workflows/
+└── ci-cd.yml
 
 
 ---
 
-If you want, I can help you with the actual Tableau integration or show examples of embedding Tableau dashboards in your project!
+## 🚀 Features
 
-Want me to do that?
+### 1. Data Ingestion
+- **Batch:** Load financial data from PostgreSQL  
+- **Streaming:** Ingest live stock prices, news, and alerts using Kafka  
+
+### 2. ETL & Stream Processing
+- Apache Spark for **batch ETL** (`src/spark/spark_etl.py`)  
+- Spark Structured Streaming for **real-time data** (`src/spark/spark_streaming.py`)  
+
+### 3. Workflow Orchestration
+- Airflow DAGs for batch + streaming pipelines  
+
+### 4. NLP Models
+- Sentiment analysis (`src/nlp/sentiment_analysis.py`)  
+- Document classification (`src/nlp/document_classifier.py`)  
+- Chatbot/LLM interactions (`src/nlp/chatbot_llm.py`)  
+
+### 5. Machine Learning Predictions
+- Real-time and batch ML pipelines for financial predictions  
+
+### 6. BI Dashboards
+- Tableau dashboards for **financial insights & alerts**  
+
+### 7. Streaming & Alerts
+- Real-time alerts via **email, Slack, or webhooks**  
+- Kafka topics:  
+  - `stock_prices`  
+  - `news_sentiment`  
+  - `alerts`  
+
+### 8. Enterprise Storage & Security
+- **Snowflake** for secure, scalable cloud storage  
+- **Encryption at rest + in transit**  
+- **Role-based access control (RBAC)**  
+- **Secret management** via Airflow Secrets or Vault  
+- **Kafka SSL/SASL** for secure streaming  
+
+---
+
+## ⚙️ Setup & Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/Enterprise-AI-NLP-Solution.git
+cd Enterprise-AI-NLP-Solution
+
+    Install dependencies:
+
+pip install -r requirements.txt
+
+    Start Docker services:
+
+docker-compose up -d
+
+    Access Airflow UI:
+    👉 http://localhost:8080
+
+    Trigger batch & streaming pipelines via Airflow DAGs.
+
+🧪 Running Tests
+
+Run all tests:
+
+pytest tests/
+
+🔄 CI/CD
+
+GitHub Actions (.github/workflows/ci-cd.yml) handles:
+
+    ✅ Linting
+
+    ✅ Unit tests
+
+    ✅ Docker build & deployment
+
+🐳 Docker & Service Management
+Start all services
+
+docker-compose up --build -d
+
+Stop and remove everything
+
+docker-compose down -v
+
+View logs
+
+docker logs -f nlp_app
+docker logs -f kafka_producer
+docker logs -f kafka_consumer
+docker logs -f postgres_container
+
+Connect to PostgreSQL inside Docker
+
+docker exec -it postgres_container psql -U postgres -d finance_db
+
+Example SQL:
+
+\dt;
+SELECT * FROM transactions LIMIT 10;
+
+🏗 Architecture Diagram
+
+                ┌─────────────┐
+                │  Live APIs  │
+                └──────┬──────┘
+                       │
+                ┌──────▼──────┐
+                │   Kafka     │
+                │ (Streaming) │
+                └──────┬──────┘
+                       │
+       ┌───────────────┼─────────────────┐
+       │               │                 │
+┌──────▼──────┐ ┌──────▼──────┐   ┌──────▼──────┐
+│ Spark ETL   │ │ Spark Stream│   │   Airflow   │
+│ (Batch)     │ │ Processing  │   │ Orchestration │
+└──────┬──────┘ └──────┬──────┘   └──────┬──────┘
+       │               │                 │
+       └──────┬────────┴─────────────────┘
+              │
+       ┌──────▼──────┐
+       │ NLP & ML    │
+       │ Models      │
+       └──────┬──────┘
+              │
+       ┌──────▼──────┐
+       │ Snowflake   │
+       │ (Storage)   │
+       └──────┬──────┘
+              │
+       ┌──────▼──────┐
+       │ Tableau BI  │
+       │ Dashboards  │
+       └─────────────┘
+
+🤝 Contributing
+
+    Fork the repo
+
+    Create feature branch
+
+git checkout -b feature/my-feature
+
+    Commit changes
+
+git commit -am "Add new feature"
+
+    Push branch
+
+git push origin feature/my-feature
+
+    Open Pull Request
+
+📜 License
+
+This project is licensed under the MIT License.
+See LICENSE
+for details.

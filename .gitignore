@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+
+# Logs
+*.log
+airflow/logs/
+nlp_app/logs/
+
+# Docker
+*.env
+*.dockerignore
+*.DS_Store
+docker-compose.override.yml
+
+# VSCode
+.vscode/
