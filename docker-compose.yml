@@ -23,7 +23,7 @@ services:
       retries: 5
 
   # -----------------
-  # NLP/ML App
+  # NLP/ML App (local build)
   # -----------------
   app:
     build: .
@@ -93,10 +93,9 @@ services:
       timeout: 10s
 
   # -----------------
-  # Kafka Producer
+  # Kafka Producer (GHCR image only)
   # -----------------
   kafka-producer:
-    build: .
     image: ghcr.io/momkhan1/kafka-producer:latest
     container_name: kafka_producer
     restart: always
@@ -117,10 +116,9 @@ services:
     command: ["python", "kafka_producer.py"]
 
   # -----------------
-  # Kafka Consumer
+  # Kafka Consumer (GHCR image only)
   # -----------------
   kafka-consumer:
-    build: .
     image: ghcr.io/momkhan1/kafka-consumer:latest
     container_name: kafka_consumer
     restart: always
