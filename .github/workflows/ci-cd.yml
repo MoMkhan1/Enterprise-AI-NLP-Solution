@@ -2,16 +2,22 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write   # allow pushing images to GHCR
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log in to GitHub Container Registry
+      - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
@@ -22,14 +28,14 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile   # ✅ use the root Dockerfile
+          file: ./Dockerfile
           push: true
-          tags: ghcr.io/momkhan1/enterprise-ai-nlp-solution/kafka-producer:latest
+          tags: ghcr.io/${{ github.repository }}/kafka-producer:latest
 
       - name: Build and push Kafka Consumer
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./Dockerfile   # ✅ same root Dockerfile
+          file: ./Dockerfile
           push: true
-          tags: ghcr.io/momkhan1/enterprise-ai-nlp-solution/kafka-consumer:latest
+          tags: ghcr.io/${{ github.repository }}/kafka-consumer:latest
